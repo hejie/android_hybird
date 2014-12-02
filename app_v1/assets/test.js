@@ -1,0 +1,1 @@
+loaction.href="http://www.baidu.com";
