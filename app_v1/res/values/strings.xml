@@ -4,5 +4,6 @@
     <string name="app_name">app_v1</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="loading">loading</string>
 
 </resources>
