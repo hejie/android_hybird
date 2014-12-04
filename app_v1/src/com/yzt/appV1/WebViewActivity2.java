@@ -20,6 +20,7 @@ public class WebViewActivity2 extends Activity {
 		webView.customWebView();
 		Intent intent=getIntent();
 		String lauchUrl=intent.getStringExtra("url");
+		YZTUtils.log(1, "lauchUrl="+lauchUrl);
 		webView.loadUrl(lauchUrl);
 			
 	}

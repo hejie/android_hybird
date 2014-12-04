@@ -41,7 +41,6 @@ public class WebViewActivity1 extends Activity {
 				exitTime = System.currentTimeMillis();
 			} else {
 				finish();
-				System.exit(0);
 			}
 			return true;
 		}

@@ -24,8 +24,7 @@ public class YZTWebViewClient extends WebViewClient {
 	@Override
 	public void onReceivedError(WebView view, int errorCode,
 			String description, String failingUrl) {
-		// YZTUtils.showToast(context,
-		// errorCode+":"+description+":"+failingUrl);
+		 YZTUtils.showToast(context, errorCode+":"+description+":"+failingUrl);
 		view.loadUrl(errorPage);
 	}
 
@@ -35,9 +34,11 @@ public class YZTWebViewClient extends WebViewClient {
 	 */
 	@Override
 	public boolean shouldOverrideUrlLoading(WebView view, String url) {
-		// 直接拉起webview切换的接口,格式为jsbridge://+要打开的url
+		// 直接拉起webview切换的接口,格式为jsbridge://www.yingzt.com?jumpUrl=要打开的url
 		if (url.toLowerCase().startsWith("jsbridge://")) {
-			jsBridge(url.substring("jsbridge://".length()));
+			Uri uri = Uri.parse(url);
+			String jumpUrl=uri.getQueryParameter("jumpUrl");
+			jsBridge(jumpUrl);
 			// js很本地交互的接口
 		} else if (url.toLowerCase().startsWith("jsinterface://")) {
 
