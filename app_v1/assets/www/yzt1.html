@@ -11,7 +11,7 @@
 
 <div id="pageHome" class="page out" >
     <div class="header in" data-role="header">
-        <h1 title="">赢众通</h1>
+        <h1 id="title" title="">赢众通</h1>
     </div>
     <div class="content" >
         <div >
@@ -43,6 +43,11 @@
             <a href="jsBridge://www.yingzt.com?jumpUrl=http%3A%2F%2Fwww.baidu.com" class="wechat-list">
                 <div class="cell">
                     <p>baidu</p>
+                </div>
+            </a>
+            <a href="jsBridge://www.yingzt.com?interfaceName=test&callback=test&num=1" class="wechat-list">
+                <div class="cell">
+                    <p>本地接口test</p>
                 </div>
             </a>
             <a href="#list" class="wechat-list">
@@ -99,7 +104,9 @@
 
 <script type="text/javascript">
     
- //alert(1);
+ function test(num){
+   document.getElementById("title").innerHTML=num;
+ }
 </script>
 </body>
 </html>

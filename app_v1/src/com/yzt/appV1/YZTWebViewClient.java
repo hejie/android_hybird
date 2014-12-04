@@ -34,14 +34,20 @@ public class YZTWebViewClient extends WebViewClient {
 	 */
 	@Override
 	public boolean shouldOverrideUrlLoading(WebView view, String url) {
-		// 直接拉起webview切换的接口,格式为jsbridge://www.yingzt.com?jumpUrl=要打开的url
+		// 直接拉起webview切换的接口,格式为jsbridge://www.yingzt.com?jumpUrl=要打开的url&interfaceName=xx&callBack=xx&num=xx
+		//接口分为2中，一种带jumpUrl的，表示拉起webview打开链接；另外一种是不带jumpUrl的，需要callback的
 		if (url.toLowerCase().startsWith("jsbridge://")) {
 			Uri uri = Uri.parse(url);
 			String jumpUrl=uri.getQueryParameter("jumpUrl");
-			jsBridge(jumpUrl);
-			// js很本地交互的接口
-		} else if (url.toLowerCase().startsWith("jsinterface://")) {
-
+			if(jumpUrl==null||jumpUrl.equals("")){
+				String interfaceName=uri.getQueryParameter("interfaceName");
+				String callBack=uri.getQueryParameter("callback");
+				String num=uri.getQueryParameter("num");
+				jsInterface(view,interfaceName,callBack,num);
+			}else{
+				jsBridge(jumpUrl);
+			}
+			
 		} else {
 			view.loadUrl(url);
 		}
@@ -137,6 +143,22 @@ public class YZTWebViewClient extends WebViewClient {
 		// 设置切换动画，从右边进入，左边退出
 		((Activity) context).overridePendingTransition(R.anim.in_from_right,
 				R.anim.out_to_left);
+	}
+	/**
+	 * @param view 当前的webview
+	 * @param interfaceName 接口名称
+	 * @param callBack  回调方法
+	 * @param num  调用的系列号
+	 */
+	public void jsInterface(WebView view,String interfaceName,String callBack,String num){
+		if(interfaceName==null||interfaceName.equals("")){
+			YZTUtils.log(5, "interfaceName is null");
+		}else{
+			if(interfaceName.equals("test")){
+				view.loadUrl("javascript:"+callBack+"('" + num+ "')");
+			}
+		}
+		
 	}
 
 }
