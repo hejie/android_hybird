@@ -14,6 +14,7 @@ import android.webkit.WebViewClient;
 
 public class YZTWebViewClient extends WebViewClient {
 	private Context context;
+	private String errorPage="file:///android_asset/www/error.html";
 	
 	
 	
@@ -26,7 +27,8 @@ public class YZTWebViewClient extends WebViewClient {
 	@Override
 	public void onReceivedError(WebView view, int errorCode,
 			String description, String failingUrl) {
-		 //Toast.makeText(Context.this, description, Toast.LENGTH_SHORT).show();
+		//YZTUtils.showToast(context, errorCode+":"+description+":"+failingUrl);
+		view.loadUrl(errorPage);
 	}
 	
 	/* 这个事件，将在用户点击链接时触发。
@@ -36,8 +38,12 @@ public class YZTWebViewClient extends WebViewClient {
      * 那么浏览器将会根据url获取网页*/
 	 @Override
      public boolean shouldOverrideUrlLoading (WebView view, String url) {
+		   //直接拉起webview切换的接口,格式为jsbridge://+要打开的url
 		   if(url.toLowerCase().startsWith("jsbridge://")){
-			   jsInterface(url);
+			   jsBridge(url.substring("jsbridge://".length()));
+		   //js很本地交互的接口
+		   }else if(url.toLowerCase().startsWith("jsinterface://")){
+			   
 		   }else{
 			   view.loadUrl(url);
 		   }
@@ -49,7 +55,7 @@ public class YZTWebViewClient extends WebViewClient {
 	@Override
 	public WebResourceResponse shouldInterceptRequest(WebView view,
 			String url) {
-		Log.d("debug","url="+url);
+		YZTUtils.log(1, "url="+url);
 		WebResourceResponse response = null;
 		Uri uri = Uri.parse(url);
 		String path = uri.getEncodedPath();
@@ -92,7 +98,8 @@ public class YZTWebViewClient extends WebViewClient {
 	 * 处理js接口
 	 * @param url
 	 */
-	public void jsInterface(String url){
+	public void jsBridge(String url){
+		YZTUtils.log(1,url);
 		String activityName=((Activity) context).getLocalClassName();//切换的源activity名称
 		Class<?> toActivityClass = null;//切换的目的activity
 		int level=Integer.valueOf(activityName.substring(activityName.length()-1));
@@ -116,10 +123,9 @@ public class YZTWebViewClient extends WebViewClient {
 				break;
 		}
 		
-		//ToolsUtils.showToast(context,activityName);
 		Intent intent = new Intent();
-		
         intent.setClass(context, toActivityClass);
+        intent.putExtra("url",url);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
         
