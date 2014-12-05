@@ -14,7 +14,7 @@ public class WebViewActivity1 extends Activity {
 	private long exitTime=0;//点击退出的时间
 
 	private YZTWebView webView;
-	private String lauchUrl="https://www.yingzt.com/yzt1.html?autoResponse=1";//启动url
+	private String lauchUrl="http://www.yingzt.com/invest?autoResponse=1";//启动url
 	@SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

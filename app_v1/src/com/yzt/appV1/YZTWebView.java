@@ -7,7 +7,7 @@ import android.webkit.WebView;
 
 public class YZTWebView extends WebView {
 	private Context context;
-	private String UA="ytzBrowser";
+	private String UA="yingztWebView/1.0";
 	private YZTWebViewClient yztWebClient;
 	private YZTWebChromeClient yztWebChromeClient;
 	

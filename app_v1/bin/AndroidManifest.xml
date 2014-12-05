@@ -16,7 +16,9 @@
         android:theme="@android:style/Theme.NoTitleBar" >
         <activity
             android:name=".WebViewActivity1"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize" >
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +28,8 @@
         
         <activity
             android:name=".WebViewActivity2"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -34,7 +37,8 @@
         
         <activity
             android:name=".WebViewActivity3"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -42,7 +46,8 @@
         
         <activity
             android:name=".WebViewActivity4"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:configChanges="orientation|keyboardHidden|screenSize" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -50,7 +55,8 @@
         
         <activity
             android:name=".WebViewActivity5"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:configChanges="orientation|keyboardHidden|screenSize" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
