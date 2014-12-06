@@ -35,6 +35,12 @@ public class YZTWebView extends WebView {
 	public void customWebView(){
 		//设置支持js
 		getSettings().setJavaScriptEnabled(true);
+		setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);   
+		setHorizontalScrollBarEnabled(false);   
+		getSettings().setSupportZoom(true);   
+		getSettings().setBuiltInZoomControls(true);   
+		setInitialScale(70);   
+		setHorizontalScrollbarOverlay(true);  
 		//设置UA
 		String ua = getSettings().getUserAgentString();
 		getSettings().setUserAgentString(ua+"; "+UA);

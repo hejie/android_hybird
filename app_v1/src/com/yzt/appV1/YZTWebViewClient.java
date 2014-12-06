@@ -2,12 +2,16 @@ package com.yzt.appV1;
 
 import java.io.InputStream;
 
+import com.ant.liao.GifView;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -15,10 +19,17 @@ import android.webkit.WebViewClient;
 public class YZTWebViewClient extends WebViewClient {
 	private Context context;
 	private String errorPage = "file:///android_asset/www/error.html";
+	private GifView gif;//loading图片
+
 
 	public YZTWebViewClient(Context context) {
 		super();
 		this.context = context;
+		gif=(GifView) ((Activity) context).findViewById(R.id.loading);
+		if(gif!=null){
+			gif.setGifImage(R.drawable.loading);
+			gif.setShowDimension(200, 80);
+		}
 	}
 
 	@Override
@@ -102,6 +113,28 @@ public class YZTWebViewClient extends WebViewClient {
 
 		return response;
 	}
+	@Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        gif.setVisibility(View.VISIBLE);
+        	
+        
+    }
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+    	gif.setVisibility(View.GONE);
+    	
+    }
+    @Override
+    public void onLoadResource(WebView view, String url) {
+    	Uri uri = Uri.parse(url);
+    	String path=uri.getPath();
+    	//开始加载js的时候就干掉loading
+    	if(path.toLowerCase().contains(".js")){
+    		gif.setVisibility(View.GONE);
+    	}
+      }
 
 	/**
 	 * 处理js接口

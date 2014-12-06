@@ -1,20 +1,21 @@
 package com.yzt.appV1;
 
-
 import com.ant.liao.GifView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
 
 public class WebViewActivity1 extends Activity {
-	private long exitTime=0;//点击退出的时间
+	private long exitTime = 0;// 点击退出的时间
 
 	private YZTWebView webView;
-	private String lauchUrl="http://www.yingzt.com/invest?autoResponse=1";//启动url
+	private String lauchUrl = "http://www.yingzt.com/invest?autoResponse=1";// 启动url
+
 	@SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +23,26 @@ public class WebViewActivity1 extends Activity {
 		setContentView(R.layout.activity_web_view);
 		YZTUtils.log(1, "onCreate");
 		YZTUtils.log(1, lauchUrl);
-		webView=(YZTWebView) findViewById(R.id.webView);
+		webView = (YZTWebView) findViewById(R.id.webView);
 		webView.customWebView();
 		webView.loadUrl(lauchUrl);
-		
-			
+
 	}
-	
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		try {
+			super.onConfigurationChanged(newConfig);
+			if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+				// land
+			} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+				// port
+			}
+		} catch (Exception ex) {
+		}
+
+	}
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -36,7 +50,7 @@ public class WebViewActivity1 extends Activity {
 			webView.goBack();
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if ((System.currentTimeMillis() - exitTime) > 5000) {//5s内点击2次退出才可以
+			if ((System.currentTimeMillis() - exitTime) > 5000) {// 5s内点击2次退出才可以
 				YZTUtils.showToast(getApplicationContext(), "再按一次退出程序");
 				exitTime = System.currentTimeMillis();
 			} else {
