@@ -78,8 +78,8 @@ public class YZTWebViewClient extends WebViewClient {
 			// Log.v("autoResponse",autoResponse);
 			try {
 				InputStream localCopy = context.getAssets().open("www" + path);
-				// InputStream localCopy = context.getAssets().open(
-				// "www/yzt.html");
+				 //InputStream localCopy = context.getAssets().open(
+				 //"test.js");
 				if (path.toLowerCase().contains(".js")) {// js
 					response = new WebResourceResponse("text/javascript",
 							"UTF-8", localCopy);

@@ -1,1 +1,1 @@
-loaction.href="http://www.baidu.com";
+console.log("js autoResponse ok");
