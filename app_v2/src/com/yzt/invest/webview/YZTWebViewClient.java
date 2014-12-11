@@ -3,15 +3,15 @@ package com.yzt.invest.webview;
 import java.io.InputStream;
 
 import com.ant.liao.GifView;
-import com.yzt.invest.R;
-import com.yzt.invest.WebViewActivity2;
-import com.yzt.invest.WebViewActivity3;
-import com.yzt.invest.WebViewActivity4;
-import com.yzt.invest.WebViewActivity5;
-import com.yzt.invest.YZTUtils;
-import com.yzt.invest.R.anim;
-import com.yzt.invest.R.drawable;
-import com.yzt.invest.R.id;
+import com.yingzt.invest.R;
+import com.yingzt.invest.WebViewActivity2;
+import com.yingzt.invest.WebViewActivity3;
+import com.yingzt.invest.WebViewActivity4;
+import com.yingzt.invest.WebViewActivity5;
+import com.yingzt.invest.YZTUtils;
+import com.yingzt.invest.R.anim;
+import com.yingzt.invest.R.drawable;
+import com.yingzt.invest.R.id;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
