@@ -1,14 +1,13 @@
-package com.yzt.appV1;
+package com.yzt.invest;
 
-import com.ant.liao.GifView;
+
+import com.yzt.invest.webview.YZTWebView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.webkit.WebView;
 
 public class WebViewActivity1 extends Activity {
 	private long exitTime = 0;// 点击退出的时间

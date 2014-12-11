@@ -1,32 +1,32 @@
-package com.yzt.appV1;
+package com.yzt.invest;
 
-import com.ant.liao.GifView;
+import com.yzt.invest.webview.YZTWebView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+
 import android.webkit.WebView;
 
-public class WebViewActivity1 extends Activity {
-	private long exitTime = 0;// 点击退出的时间
-
+public class WebViewActivity5 extends Activity {
 	private YZTWebView webView;
-	private String lauchUrl = "http://www.yingzt.com/invest";// 启动url
 
 	@SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_web_view);
+		setContentView(R.layout.activity1_web_view);
 		YZTUtils.log(1, "onCreate");
-		YZTUtils.log(1, lauchUrl);
 		webView = (YZTWebView) findViewById(R.id.webView);
 		webView.customWebView();
+		Intent intent = getIntent();
+		String lauchUrl = intent.getStringExtra("url");
 		webView.loadUrl(lauchUrl);
-
 	}
 
 	@Override
@@ -45,19 +45,24 @@ public class WebViewActivity1 extends Activity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-		if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
-			webView.goBack();
-			return true;
-		} else if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if ((System.currentTimeMillis() - exitTime) > 5000) {// 5s内点击2次退出才可以
-				YZTUtils.showToast(getApplicationContext(), "再按一次退出程序");
-				exitTime = System.currentTimeMillis();
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if (webView.canGoBack()) {
+				webView.goBack();
+				return true;
 			} else {
-				finish();
+				super.onBackPressed();
+				overridePendingTransition(R.anim.in_from_left,
+						R.anim.out_to_right);
 			}
-			return true;
+
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		// overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
 	}
 }
