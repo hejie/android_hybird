@@ -1,45 +1,33 @@
 package com.yingzt.invest;
 
-
-import com.tencent.android.tpush.XGIOperateCallback;
-import com.tencent.android.tpush.XGPushConfig;
-import com.tencent.android.tpush.XGPushManager;
-import com.tencent.android.tpush.common.Constants;
-import com.tencent.android.tpush.service.XGPushService;
-import com.tencent.android.tpush.service.cache.CacheManager;
-import com.yzt.invest.webview.YZTWebView;
+import com.ant.liao.GifView;
+import com.igexin.sdk.PushManager;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.webkit.WebView;
 
 public class WebViewActivity1 extends Activity {
 	private long exitTime = 0;// 点击退出的时间
 
 	private YZTWebView webView;
 	private String lauchUrl = "http://www.yingzt.com/invest";// 启动url
-	
-	Message m = null;
 
 	@SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_web_view);
-		//注册信鸽
-		registerXG();
 		YZTUtils.log(1, "onCreate");
 		YZTUtils.log(1, lauchUrl);
 		webView = (YZTWebView) findViewById(R.id.webView);
 		webView.customWebView();
 		webView.loadUrl(lauchUrl);
-		
+		PushManager.getInstance().initialize(this.getApplicationContext());
 
 	}
 
@@ -73,17 +61,5 @@ public class WebViewActivity1 extends Activity {
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
-	}
-	/**
-	 * 注册信鸽
-	 */
-	public void registerXG(){
-		//开启logcat输出，方便debug，发布时请关闭
-		XGPushConfig.enableDebug(this, true);
-		Context context = getApplicationContext();
-		XGPushManager.registerPush(context);
-		
-		Intent service = new Intent(context, XGPushService.class);
-		context.startService(service);
 	}
 }
