@@ -1,4 +1,7 @@
-package com.yingzt.invest;
+package com.yingzt.invest.webview;
+
+
+import com.yingzt.invest.R;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -36,11 +39,16 @@ public class YZTWebView extends WebView {
 		//设置支持js
 		getSettings().setJavaScriptEnabled(true);
 		setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);   
-		setHorizontalScrollBarEnabled(false);   
-		getSettings().setSupportZoom(true);   
-		getSettings().setBuiltInZoomControls(true);   
+		setHorizontalScrollBarEnabled(false);
+		//webview支持页面缩放，一般通过以下设置就可满足大部分的要求
+		getSettings().setSupportZoom(false); 
+		//设置是否可缩放
+		getSettings().setBuiltInZoomControls(false);  
+		//设置webview默认缩放比例：
 		setInitialScale(70);   
 		setHorizontalScrollbarOverlay(true);  
+		
+		//setBackgroundResource(R.drawable.ic_launcher);//然后设置背景图片 
 		//设置UA
 		String ua = getSettings().getUserAgentString();
 		getSettings().setUserAgentString(ua+"; "+UA);

@@ -1,8 +1,17 @@
-package com.yingzt.invest;
+package com.yingzt.invest.webview;
 
 import java.io.InputStream;
 
 import com.ant.liao.GifView;
+import com.yingzt.invest.R;
+import com.yingzt.invest.WebViewActivity2;
+import com.yingzt.invest.WebViewActivity3;
+import com.yingzt.invest.WebViewActivity4;
+import com.yingzt.invest.WebViewActivity5;
+import com.yingzt.invest.YZTUtils;
+import com.yingzt.invest.R.anim;
+import com.yingzt.invest.R.drawable;
+import com.yingzt.invest.R.id;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -19,6 +28,9 @@ import android.webkit.WebViewClient;
 public class YZTWebViewClient extends WebViewClient {
 	private Context context;
 	private String errorPage = "file:///android_asset/www/error.html";
+	private String localScheme="app";//本地资源协议
+	private String jsScheme="jsbridge";//js接口协议
+	private String webRoot="assets/www";//本地资源根目录
 	private GifView gif;//loading图片
 
 
@@ -47,8 +59,9 @@ public class YZTWebViewClient extends WebViewClient {
 	public boolean shouldOverrideUrlLoading(WebView view, String url) {
 		// 直接拉起webview切换的接口,格式为jsbridge://www.yingzt.com?jumpUrl=要打开的url&interfaceName=xx&callBack=xx&num=xx
 		//接口分为2中，一种带jumpUrl的，表示拉起webview打开链接；另外一种是不带jumpUrl的，需要callback的
-		if (url.toLowerCase().startsWith("jsbridge://")) {
-			Uri uri = Uri.parse(url);
+		Uri uri = Uri.parse(url);
+		String scheme=uri.getScheme();
+		if (scheme.equalsIgnoreCase(jsScheme)) {
 			String jumpUrl=uri.getQueryParameter("jumpUrl");
 			if(jumpUrl==null||jumpUrl.equals("")){
 				String interfaceName=uri.getQueryParameter("interfaceName");
@@ -73,39 +86,43 @@ public class YZTWebViewClient extends WebViewClient {
 		WebResourceResponse response = null;
 		Uri uri = Uri.parse(url);
 		String path = uri.getEncodedPath();
-		String autoResponse = uri.getQueryParameter("autoResponse");// 引用静态资源的时候如果带上这个参数，则做本地替换
-		if (autoResponse != null) {
-			// Log.v("autoResponse",autoResponse);
+		String scheme=uri.getScheme();
+		//本地资源
+		if (scheme.equalsIgnoreCase(localScheme)) {
 			try {
-				InputStream localCopy = context.getAssets().open("www" + path);
+				InputStream localCopy = context.getAssets().open(webRoot + path);
 				 //InputStream localCopy = context.getAssets().open(
 				 //"test.js");
 				if (path.toLowerCase().contains(".js")) {// js
 					response = new WebResourceResponse("text/javascript",
 							"UTF-8", localCopy);
-					Log.v("autoResponse js", url);
+					YZTUtils.log(1,"autoResponse js:"+url);
 				} else if (path.toLowerCase().contains(".css")) {// css
 					response = new WebResourceResponse("text/css", "UTF-8",
 							localCopy);
-					Log.v("autoResponse css", url);
+					YZTUtils.log(1,"autoResponse css:"+url);
 				} else if (path.toLowerCase().contains(".png")) {// png
 																	// 图片
 					response = new WebResourceResponse("image/png", "UTF-8",
 							localCopy);
-					Log.v("autoResponse png", url);
+					YZTUtils.log(1,"autoResponse png:"+url);
+
 				} else if (path.toLowerCase().contains(".gif")) {// gif
 					// 图片
 					response = new WebResourceResponse("image/gif", "UTF-8",
 							localCopy);
-					Log.v("autoResponse png", url);
+					YZTUtils.log(1,"autoResponse gif:"+url);
+
 				} else {// html
 					response = new WebResourceResponse("text/html", "UTF-8",
 							localCopy);
-					Log.v("autoResponse html", url);
+					YZTUtils.log(1,"autoResponse html:"+url);
+
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				Log.v("error", e.getMessage());
+				YZTUtils.log(5,"autoResponse error:"+e.getMessage());
+
 				return null;
 			}
 

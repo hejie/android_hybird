@@ -2,6 +2,7 @@ package com.yingzt.invest;
 
 import com.ant.liao.GifView;
 import com.igexin.sdk.PushManager;
+import com.yingzt.invest.webview.YZTWebView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

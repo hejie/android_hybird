@@ -1,4 +1,4 @@
-package com.yingzt.invest;
+package com.yingzt.invest.webview;
 
 import com.ant.liao.GifView;
 
