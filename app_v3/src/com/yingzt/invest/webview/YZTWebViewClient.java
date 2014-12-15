@@ -4,14 +4,14 @@ import java.io.InputStream;
 
 import com.ant.liao.GifView;
 import com.yingzt.invest.R;
-import com.yingzt.invest.WebViewActivity2;
-import com.yingzt.invest.WebViewActivity3;
-import com.yingzt.invest.WebViewActivity4;
-import com.yingzt.invest.WebViewActivity5;
 import com.yingzt.invest.YZTUtils;
 import com.yingzt.invest.R.anim;
 import com.yingzt.invest.R.drawable;
 import com.yingzt.invest.R.id;
+import com.yingzt.invest.activity.WebViewActivity2;
+import com.yingzt.invest.activity.WebViewActivity3;
+import com.yingzt.invest.activity.WebViewActivity4;
+import com.yingzt.invest.activity.WebViewActivity5;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -30,7 +30,7 @@ public class YZTWebViewClient extends WebViewClient {
 	private String errorPage = "file:///android_asset/www/error.html";
 	private String localScheme="app";//本地资源协议
 	private String jsScheme="jsbridge";//js接口协议
-	private String webRoot="assets/www";//本地资源根目录
+	private String webRoot="www";//本地资源根目录
 	private GifView gif;//loading图片
 
 
@@ -82,7 +82,7 @@ public class YZTWebViewClient extends WebViewClient {
 	@SuppressLint("NewApi")
 	@Override
 	public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-		YZTUtils.log(1, "url=" + url);
+		YZTUtils.log(1, "shouldInterceptRequest url=" + url);
 		WebResourceResponse response = null;
 		Uri uri = Uri.parse(url);
 		String path = uri.getEncodedPath();
@@ -158,6 +158,7 @@ public class YZTWebViewClient extends WebViewClient {
 	 * 
 	 * @param url
 	 */
+	@SuppressLint("NewApi")
 	public void jsBridge(String url) {
 		YZTUtils.log(1, url);
 		String activityName = ((Activity) context).getLocalClassName();// 切换的源activity名称

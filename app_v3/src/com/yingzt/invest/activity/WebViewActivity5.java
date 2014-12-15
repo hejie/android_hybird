@@ -1,6 +1,11 @@
-package com.yingzt.invest;
+package com.yingzt.invest.activity;
 
 
+import com.yingzt.invest.R;
+import com.yingzt.invest.YZTUtils;
+import com.yingzt.invest.R.anim;
+import com.yingzt.invest.R.id;
+import com.yingzt.invest.R.layout;
 import com.yingzt.invest.webview.YZTWebView;
 
 import android.annotation.SuppressLint;
@@ -14,7 +19,7 @@ import android.view.KeyEvent;
 
 import android.webkit.WebView;
 
-public class WebViewActivity4 extends Activity {
+public class WebViewActivity5 extends BaseActivity {
 	private YZTWebView webView;
 
 	@SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
@@ -28,7 +33,6 @@ public class WebViewActivity4 extends Activity {
 		Intent intent = getIntent();
 		String lauchUrl = intent.getStringExtra("url");
 		webView.loadUrl(lauchUrl);
-
 	}
 
 	@Override
@@ -45,6 +49,7 @@ public class WebViewActivity4 extends Activity {
 
 	}
 
+	@SuppressLint("NewApi")
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {

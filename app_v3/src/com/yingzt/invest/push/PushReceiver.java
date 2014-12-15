@@ -8,7 +8,10 @@ import android.util.Log;
 
 import com.igexin.sdk.PushConsts;
 import com.igexin.sdk.PushManager;
+import com.yingzt.invest.YZTApplication;
 import com.yingzt.invest.YZTUtils;
+import com.yingzt.invest.activity.WebViewActivity1;
+import com.yingzt.invest.activity.WebViewActivity4;
 
 public class PushReceiver extends BroadcastReceiver {
 
@@ -34,6 +37,12 @@ public class PushReceiver extends BroadcastReceiver {
 				String data = new String(payload);
 
 				YZTUtils.log(1, "Got Payload:" + data);
+				YZTApplication app=(YZTApplication)(context.getApplicationContext());
+				app.put("notifactionData", data);
+				//启动应用
+				//intent.setClass(context, WebViewActivity1.class);
+				//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				//context.startActivity(intent);
 				
 			}
 			break;
@@ -45,17 +54,17 @@ public class PushReceiver extends BroadcastReceiver {
 			
 			break;
 		case PushConsts.THIRDPART_FEEDBACK:
-			/*String appid = bundle.getString("appid");
-			String taskid = bundle.getString("taskid");
+			String appid = bundle.getString("appid");
+			//String taskid = bundle.getString("taskid");
 			String actionid = bundle.getString("actionid");
-			String result = bundle.getString("result");
+			//String result = bundle.getString("result");
 			long timestamp = bundle.getLong("timestamp");
 
-			Log.d("GetuiSdkDemo", "appid = " + appid);
-			Log.d("GetuiSdkDemo", "taskid = " + taskid);
-			Log.d("GetuiSdkDemo", "actionid = " + actionid);
-			Log.d("GetuiSdkDemo", "result = " + result);
-			Log.d("GetuiSdkDemo", "timestamp = " + timestamp);*/
+			YZTUtils.log(1, "appid = " + appid);
+			//Log.d("GetuiSdkDemo", "taskid = " + taskid);
+			YZTUtils.log(1, "actionid = " + actionid);
+			//Log.d("GetuiSdkDemo", "result = " + result);
+			YZTUtils.log(1, "timestamp = " + timestamp);
 			break;
 		default:
 			break;

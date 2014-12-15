@@ -1,18 +1,25 @@
-package com.yingzt.invest;
+package com.yingzt.invest.activity;
 
 import com.ant.liao.GifView;
 import com.igexin.sdk.PushManager;
+import com.yingzt.invest.R;
+import com.yingzt.invest.YZTApplication;
+import com.yingzt.invest.YZTUtils;
+import com.yingzt.invest.R.id;
+import com.yingzt.invest.R.layout;
 import com.yingzt.invest.webview.YZTWebView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
 
-public class WebViewActivity1 extends Activity {
+public class WebViewActivity1 extends BaseActivity {
 	private long exitTime = 0;// 点击退出的时间
 
 	private YZTWebView webView;
@@ -22,13 +29,22 @@ public class WebViewActivity1 extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_web_view);
+		
+		setNavTitle(R.string.home_nav_title);
+		setNavRightText(R.string.hello_world);
+		
+		
+		
 		YZTUtils.log(1, "onCreate");
 		YZTUtils.log(1, lauchUrl);
 		webView = (YZTWebView) findViewById(R.id.webView);
 		webView.customWebView();
 		webView.loadUrl(lauchUrl);
 		PushManager.getInstance().initialize(this.getApplicationContext());
+		YZTUtils.log(1, "clinetid:"+PushManager.getInstance().getClientid(this.getApplicationContext()));
+		YZTUtils.log(1,"get Payload:"+((YZTApplication)getApplication()).get("notifactionData"));
 
 	}
 

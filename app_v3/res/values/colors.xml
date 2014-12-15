@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="login_normal">#FFB410</color>
+    <color name="login_press">#B27E0D</color>
+    <color name="next_normal">#23CDDE</color>
+    <color name="next_press">#1A8F9B</color>
+    <color name="get_verify_code_text_normal">#23CDDE</color>
+    <color name="get_verify_code_text_press">#1A8F9B</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red">#fa0f0f</color>
+    <color name="nav_back_press_color">#AEACAC</color>
+    <color name="activity_background">#EFEEF4</color>
+    <color name="activity_foreground">#23CDDE</color>
+</resources>

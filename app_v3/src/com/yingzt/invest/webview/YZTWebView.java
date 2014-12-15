@@ -1,8 +1,6 @@
 package com.yingzt.invest.webview;
 
 
-import com.yingzt.invest.R;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
@@ -17,24 +15,21 @@ public class YZTWebView extends WebView {
 	public YZTWebView(Context context){
 		super(context);
 		this.context=context;
-		customWebView();
 	}
 	public YZTWebView(Context context,AttributeSet attrs) {
 		super(context,attrs);
 		// TODO Auto-generated constructor stub
 		this.context=context;
-		customWebView();
 	}
 	public YZTWebView(Context context,AttributeSet attrs,int defStyle) {
 		super(context,attrs,defStyle);
 		// TODO Auto-generated constructor stub
 		this.context=context;
-		//customWebView();
 	}
 	/**
 	 * 自定义webview
 	 */
-	@SuppressLint("SetJavaScriptEnabled")
+	@SuppressLint({ "SetJavaScriptEnabled", "NewApi" })
 	public void customWebView(){
 		//设置支持js
 		getSettings().setJavaScriptEnabled(true);

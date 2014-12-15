@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/activity_background">
     
-     >
-     
+    <include layout="@layout/view_navigation"/>
+    
     <com.yingzt.invest.webview.YZTWebView
         android:id="@+id/webView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" 
+        android:layout_below="@+id/nav_title_bar"
         android:visibility="visible" />
     <LinearLayout 
 	    android:layout_width="wrap_content"
