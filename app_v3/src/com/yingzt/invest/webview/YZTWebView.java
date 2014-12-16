@@ -31,8 +31,7 @@ public class YZTWebView extends WebView {
 	 */
 	@SuppressLint({ "SetJavaScriptEnabled", "NewApi" })
 	public void customWebView(){
-		//设置支持js
-		getSettings().setJavaScriptEnabled(true);
+		setUA();
 		setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);   
 		setHorizontalScrollBarEnabled(false);
 		//webview支持页面缩放，一般通过以下设置就可满足大部分的要求
@@ -44,15 +43,24 @@ public class YZTWebView extends WebView {
 		setHorizontalScrollbarOverlay(true);  
 		
 		//setBackgroundResource(R.drawable.ic_launcher);//然后设置背景图片 
-		//设置UA
-		String ua = getSettings().getUserAgentString();
-		getSettings().setUserAgentString(ua+"; "+UA);
+		
 		//设置webViewClient
 		this.yztWebClient=new YZTWebViewClient(context);
 		setWebViewClient(this.yztWebClient);
 		//设置webChromeClient
 		this.yztWebChromeClient=new YZTWebChromeClient(context);
 		setWebChromeClient(this.yztWebChromeClient);
+	}
+	/**
+	 * 设置ua，用于预加载的webview
+	 */
+	@SuppressLint("NewApi")
+	public void setUA(){
+		//设置UA
+		String ua = getSettings().getUserAgentString();
+		getSettings().setUserAgentString(ua+"; "+UA);
+		//设置支持js
+		getSettings().setJavaScriptEnabled(true);
 	}
 	
 

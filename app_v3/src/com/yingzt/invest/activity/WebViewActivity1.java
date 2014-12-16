@@ -33,12 +33,11 @@ public class WebViewActivity1 extends BaseActivity {
 		setContentView(R.layout.activity_web_view);
 		
 		setNavTitle(R.string.home_nav_title);
-		setNavRightText(R.string.hello_world);
 		
 		
 		
 		YZTUtils.log(1, "onCreate");
-		YZTUtils.log(1, lauchUrl);
+		YZTUtils.log(1, "lauchUrl:"+lauchUrl);
 		webView = (YZTWebView) findViewById(R.id.webView);
 		webView.customWebView();
 		webView.loadUrl(lauchUrl);
