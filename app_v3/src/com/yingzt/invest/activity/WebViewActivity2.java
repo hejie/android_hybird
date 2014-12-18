@@ -24,7 +24,7 @@ public class WebViewActivity2 extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity1_web_view);
+		setContentView(R.layout.activity_web_view);
 		
 		setNavTitle(R.string.invest_nav_title);
 		setNavBackTitle(R.string.back_nav_title);
@@ -33,9 +33,9 @@ public class WebViewActivity2 extends BaseActivity {
 		webView = (YZTWebView) findViewById(R.id.webView);
 		webView.customWebView();
 		Intent intent = getIntent();
-		String lauchUrl = intent.getStringExtra("url");
-		YZTUtils.log(1, "lauchUrl=" + lauchUrl);
-		webView.loadUrl(lauchUrl);
+		String launchUrl = intent.getStringExtra("url");
+		YZTUtils.log(1, "launchUrl=" + launchUrl);
+		webView.loadUrl(launchUrl);
 
 	}
 

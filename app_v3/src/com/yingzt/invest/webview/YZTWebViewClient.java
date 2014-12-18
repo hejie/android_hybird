@@ -148,7 +148,7 @@ public class YZTWebViewClient extends WebViewClient {
     	Uri uri = Uri.parse(url);
     	String path=uri.getPath();
     	//开始加载js的时候就干掉loading
-    	if(path.toLowerCase().contains(".js")){
+    	if(path!=null&&path.toLowerCase().contains(".js")){
     		gif.setVisibility(View.GONE);
     	}
       }

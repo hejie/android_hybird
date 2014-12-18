@@ -33,7 +33,7 @@ public class GuideActivity extends Activity {
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//needGuide();
+		needGuide();
 		setContentView(R.layout.activity_guide);
 		
 		mPager = (ViewPager)findViewById(R.id.guide_viewpager);
@@ -123,6 +123,7 @@ public class GuideActivity extends Activity {
 	
 	private void openHome(){
 		Intent intent = new Intent(getApplicationContext(),SplashActivity.class);
+		
 		startActivity(intent);
 		finish();
 	}

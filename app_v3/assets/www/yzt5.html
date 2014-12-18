@@ -1,37 +1,16 @@
-<!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-    <title>赢众通</title>
-
+<title>App Framework</title>
+<link rel="stylesheet" type="text/css" href="http://cdn.app-framework-software.intel.com/2.1/af.ui.css" />
+<script type="text/javascript" charset="utf-8" src="http://cdn.app-framework-software.intel.com/2.1/appframework.ui.min.js"></script>    
 </head>
-
-<body>
-
-<div id="pageHome" class="page out" >
-    <div class="header in" data-role="header">
-        <h1 title="">赢众通5</h1>
-    </div>
-    <div class="content" >
-        <div >
-        100
-            <a href="jsBridge://test1" class="wechat-list">
-                <div class="cell">
-                    <p>充值</p>
-                </div>
-            </a>
-            
-
-        </div>
-    </div>
-
+<body> 
+<div id="afui">
+<div id="header"></div>
+<div id="content">
+<div class='panel' id='main' selected='true'><header><h1>Demo</h1></header> <footer> <a class="icon home" href="#home">Home</a><a class="icon settings" href="#settings">Settings</a><a class="icon bug" href="#bugs">Bugs</a><a class="icon info" href="#bugs">About</a> </footer> </div>
 </div>
-
-
-<script type="text/javascript">
-    
- //alert(1);
-</script>
+<div id="navbar"></div>
+</div>
 </body>
 </html>

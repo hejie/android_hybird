@@ -17,7 +17,7 @@ import android.os.Bundle;
  * 闪屏，App第一个界面
  */
 public class SplashActivity extends Activity {
-	private int delayTime=5000;//延迟时间
+	private int delayTime=3000;//延迟时间
 	private YZTWebView webView;
 
     @SuppressLint("NewApi")
@@ -26,8 +26,8 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //雨夹杂首页
-        preload("http://www.yingzt.com/invest");
+        //预加载首页
+        //preload(YZTUtils.getLaunchUrl(getBaseContext()));
         
         /**
          * 延迟三秒
@@ -35,8 +35,6 @@ public class SplashActivity extends Activity {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-
-                
                  Intent intent = new Intent(SplashActivity.this, WebViewActivity1.class);
                  startActivity(intent);
                  overridePendingTransition(R.anim.in_from_right,
@@ -58,7 +56,7 @@ public class SplashActivity extends Activity {
     	YZTUtils.log(1, "preload url=:"+url);
     	webView= new YZTWebView(getBaseContext());
     	webView.setUA();
-    	webView.post(new Runnable() {
+    	runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 webView.loadUrl(url);

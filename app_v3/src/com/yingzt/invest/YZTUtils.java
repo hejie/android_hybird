@@ -1,6 +1,10 @@
 package com.yingzt.invest;
 
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -48,6 +52,50 @@ public class YZTUtils {
 	 */
 	public static void showToast(Context context,String description){
 		Toast.makeText(context, description, Toast.LENGTH_SHORT).show();
+	}
+	/**
+	 * 从配置中获取启动url
+	 * @param context
+	 * @return
+	 */
+	public static String getLaunchUrl(Context context){
+		String launchUrl="";
+		InputStream is =  context.getResources().openRawResource( 
+                R.raw.system); 
+        Properties properties = new Properties(); 
+        try { 
+            properties.load(is); 
+            launchUrl = properties.getProperty("launchUrl", ""); 
+            
+        } catch (IOException e) { 
+            e.getMessage(); 
+        } 
+        if(launchUrl.equals("")){
+        	launchUrl="https://www.yingzt.com/invest";
+        }
+        return launchUrl;
+	}
+	/**
+	 * 获取UA信息
+	 * @param context
+	 * @return
+	 */
+	public static String getUA(Context context){
+		String ua="";
+		InputStream is =  context.getResources().openRawResource( 
+                R.raw.system); 
+        Properties properties = new Properties(); 
+        try { 
+            properties.load(is); 
+            ua = properties.getProperty("ua", ""); 
+            
+        } catch (IOException e) { 
+            e.getMessage(); 
+        } 
+        if(ua.equals("")){
+        	ua="yingztApp/1.0";
+        }
+        return ua;
 	}
 
 }

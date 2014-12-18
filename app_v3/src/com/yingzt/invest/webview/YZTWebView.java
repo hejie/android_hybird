@@ -1,6 +1,8 @@
 package com.yingzt.invest.webview;
 
 
+import com.yingzt.invest.YZTUtils;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,7 +10,7 @@ import android.webkit.WebView;
 
 public class YZTWebView extends WebView {
 	private Context context;
-	private String UA="yingztWebView/1.0";
+	private String UA;
 	private YZTWebViewClient yztWebClient;
 	private YZTWebChromeClient yztWebChromeClient;
 	
@@ -54,10 +56,11 @@ public class YZTWebView extends WebView {
 	/**
 	 * 设置ua，用于预加载的webview
 	 */
-	@SuppressLint("NewApi")
+	@SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
 	public void setUA(){
 		//设置UA
 		String ua = getSettings().getUserAgentString();
+		UA=YZTUtils.getUA(context);
 		getSettings().setUserAgentString(ua+"; "+UA);
 		//设置支持js
 		getSettings().setJavaScriptEnabled(true);

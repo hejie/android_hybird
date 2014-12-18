@@ -23,7 +23,7 @@ public class WebViewActivity1 extends BaseActivity {
 	private long exitTime = 0;// 点击退出的时间
 
 	private YZTWebView webView;
-	private String lauchUrl = "http://www.yingzt.com/invest";// 启动url
+	private String launchUrl;// 启动url
 
 	@SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
 	@Override
@@ -34,13 +34,13 @@ public class WebViewActivity1 extends BaseActivity {
 		
 		setNavTitle(R.string.home_nav_title);
 		
-		
-		
+		launchUrl=YZTUtils.getLaunchUrl(getBaseContext());
+		launchUrl="app://www.yingzt.com/iscroll.html";
 		YZTUtils.log(1, "onCreate");
-		YZTUtils.log(1, "lauchUrl:"+lauchUrl);
+		YZTUtils.log(1, "lauchUrl:"+launchUrl);
 		webView = (YZTWebView) findViewById(R.id.webView);
 		webView.customWebView();
-		webView.loadUrl(lauchUrl);
+		webView.loadUrl(launchUrl);
 		PushManager.getInstance().initialize(this.getApplicationContext());
 		YZTUtils.log(1, "clinetid:"+PushManager.getInstance().getClientid(this.getApplicationContext()));
 		YZTUtils.log(1,"get Payload:"+((YZTApplication)getApplication()).get("notifactionData"));

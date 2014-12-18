@@ -26,13 +26,13 @@ public class WebViewActivity5 extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity1_web_view);
+		setContentView(R.layout.activity_web_view);
 		YZTUtils.log(1, "onCreate");
 		webView = (YZTWebView) findViewById(R.id.webView);
 		webView.customWebView();
 		Intent intent = getIntent();
-		String lauchUrl = intent.getStringExtra("url");
-		webView.loadUrl(lauchUrl);
+		String launchUrl = intent.getStringExtra("url");
+		webView.loadUrl(launchUrl);
 	}
 
 	@Override
